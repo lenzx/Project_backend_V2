@@ -1,53 +1,53 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets
-from .serializer import ProductoSerializer, CategoriaSerializer, ProductoCategoriaSerializer
-from .models import Producto, Categoria, Producto_categoria  
+from .serializer import SeccionSerializer, MarkaySerializer, Red_socialSerializer
+from .models import Seccion, Markay, Red_social
 from rest_framework.response import Response
 from rest_framework import status
 # Create your views here.
 
 
-class ProductoViewSet(viewsets.ModelViewSet):
-    queryset = Producto.objects.all()
-    serializer_class = ProductoSerializer
+class MarkayViewSet(viewsets.ModelViewSet) :
+    queryset = Markay.objects.all()
+    serializer_class = MarkaySerializer
 
-    def list(self, request):
+    def list(self, request) :
         """
         List all productos.
         """
-        productos = Producto.objects.all()
-        serializer = ProductoSerializer(productos, many=True)
+        markays = Markay.objects.all() 
+        serializer = MarkaySerializer(markays, many=True)
         return Response(serializer.data)
 
     def create(self, request):
         """
         Create a new producto.
         """
-        serializer = ProductoSerializer(data=request.data)
+        serializer = MarkaySerializer(data=request.data) 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
+        else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
         """
         Retrieve a producto.
         """
-        producto = Producto.objects.get(pk=pk)
-        serializer = ProductoSerializer(producto)
+        markay = Markay.objects.get(pk=pk) 
+        serializer = MarkaySerializer(markay)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
         """
         Update a producto.
         """
-        producto = Producto.objects.get(pk=pk)
-        serializer = ProductoSerializer(producto, data=request.data)
+        markay = Markay.objects.get(pk=pk) 
+        serializer = MarkaySerializer(markay, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data) 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -55,111 +55,111 @@ class ProductoViewSet(viewsets.ModelViewSet):
         """
         Delete a producto.
         """
-        producto = Producto.objects.get(pk=pk)
-        producto.delete()
+        markay = Markay.objects.get(pk=pk) 
+        markay.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class SeccionViewSet(viewsets.ModelViewSet) :
+    queryset = Seccion.objects.all()
+    serializer_class = SeccionSerializer
+
+    def list(self, request):
+        """
+        List all productos.
+        """
+        secciones = Seccion.objects.all() 
+        serializer = SeccionSerializer(secciones, many=True)
+        return Response(serializer.data)
+
+    def create(self, request):
+        """
+        Create a new producto.
+        """
+        serializer = SeccionSerializer(data=request.data) 
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else: 
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None):
+        """
+        Retrieve a producto.
+        """
+        seccion = Seccion.objects.get(pk=pk) 
+        serializer = SeccionSerializer(seccion)
+        return Response(serializer.data)
+
+    def update(self, request, pk=None):
+        """
+        Update a producto.
+        """
+        seccion = Seccion.objects.get(pk=pk) 
+        serializer = SeccionSerializer(seccion, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data) 
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, pk=None):
+        """
+        Delete a producto.
+        """
+        seccion = Seccion.objects.get(pk=pk) 
+        seccion.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+class RedSocialViewSet(viewsets.ModelViewSet):
+    queryset = Red_social.objects.all()
+    serializer_class = Red_socialSerializer
+
+    def list(self, request):
+        """
+        List all productos.
+        """
+        redsociales = Red_social.objects.all()
+        serializer = Red_socialSerializer(redsociales, many=True)
+        return Response(serializer.data)
+
+    def create(self, request) :
+        """
+        Create a new producto.
+        """
+        serializer = Red_socialSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else: 
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-
-class CategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Categoria.objects.all()
-    serializer_class = CategoriaSerializer
-
-    def list(self, request):
-        """
-        List all categorias.
-        """
-        categorias = Categoria.objects.all()
-        serializer = CategoriaSerializer(categorias, many=True)
-        return Response(serializer.data)
-
-    def create(self, request):
-        """
-        Create a new categoria.
-        """
-        serializer = CategoriaSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def retrieve(self, request, pk=None):
         """
-        Retrieve a categoria.
+        Retrieve a producto.
         """
-        categoria = Categoria.objects.get(pk=pk)
-        serializer = CategoriaSerializer(categoria)
+        redsocial = Red_social.objects.get(pk=pk)
+        serializer = Red_socialSerializer(redsocial)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
         """
-        Update a categoria.
+        Update a producto.
         """
-        categoria = Categoria.objects.get(pk=pk)
-        serializer = CategoriaSerializer(categoria, data=request.data)
+        redsocial = Red_social.objects.get(pk=pk)
+        serializer = Red_socialSerializer(redsocial, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        else:
+        else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def destroy(self, request, pk=None):
+        
+    def destroy(self, request, pk=None) :
         """
-        Delete a categoria.
+        Delete a producto.
         """
-        categoria = Categoria.objects.get(pk=pk)
-        categoria.delete()
+        redsocial = Red_social.objects.get(pk=pk)
+        redsocial.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class ProductoCategoriaViewSet(viewsets.ModelViewSet):
-    queryset = Producto_categoria.objects.all()
-    serializer_class =  ProductoCategoriaSerializer
-
-    def list(self, request):
-        """
-        List all ProductoCategoria
-        """
-        categorias = Producto_categoria.objects.all()
-        serializer =  ProductoCategoriaSerializer(categorias, many=True)
-        return Response(serializer.data)
-
-    def create(self, request):
-        """
-        Create a ProductoCategoria
-        """
-        serializer =  ProductoCategoriaSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def retrieve(self, request, pk=None):
-        """
-        Retrieve a ProductoCategoria
-        """
-        categoria = Producto_categoria.objects.get(pk=pk)
-        serializer =  ProductoCategoriaSerializer(categoria)
-        return Response(serializer.data)
-
-    def update(self, request, pk=None):
-        """
-        Update a ProductoCategoria
-        """
-        categoria = Producto_categoria.objects.get(pk=pk)
-        serializer = ProductoCategoriaSerializer(categoria, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def destroy(self, request, pk=None):
-        """
-        Delete a categoria.
-        """
-        categoria = Producto_categoria.objects.get(pk=pk)
-        categoria.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-

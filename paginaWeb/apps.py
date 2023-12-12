@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 
-class InformacionConfig(AppConfig):
+class PaginaWebConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'informacion'
+    name = 'paginaWeb'
+
