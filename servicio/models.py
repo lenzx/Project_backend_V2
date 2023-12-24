@@ -25,7 +25,7 @@ class Convenio(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.CharField(max_length=1000)
     enlace = models.CharField(max_length=200)
-    imagen = CloudinaryField('image')
+    imagen = CloudinaryField('image', folder='convenios_img')
     num_telefono = models.CharField(max_length=25)
     tipo_convenio_id = models.ForeignKey(Categoria_convenio, on_delete=models.CASCADE)
     especialistas = models.ManyToManyField(Especialista,through='Especialista_convenio',related_name='convenios')

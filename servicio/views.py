@@ -85,7 +85,7 @@ class EspecialistaViewSet(viewsets.ModelViewSet):
         """
         Recuperar un especialista.
         """
-        especialista = Especialista.objects.get(pk=pk).prefetch_related('especialidad')
+        especialista = Especialista.objects.get(pk=pk)
         serializer = EspecialistaSerializer(especialista)
         return Response(serializer.data)
 
@@ -267,7 +267,7 @@ class CategoriaConvenioViewSet(viewsets.ModelViewSet):
     queryset = Categoria_convenio.objects.all()
     serializer_class = CategoriaConvenioSerializer
 
-    
+
     def list(self, request):
         """
         List all CategoriaConvenio.
