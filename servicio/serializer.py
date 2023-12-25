@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import (
     Convenio, Especialidad, Especialista, Servicio,
-    Categoria_convenio, Consulta, Especialista_convenio, Especialista_especialidad,
-    Especialidad_servicio
+    Categoria_convenio, Consulta
+    
 )
 
 class ConvenioSerializer(serializers.ModelSerializer):
@@ -27,29 +27,11 @@ class ServicioSerializer(serializers.ModelSerializer):
         model = Servicio
         fields = '__all__'
 
-class EspecialidadServicioSerializer(serializers.ModelSerializer):
-    especialista = EspecialistaSerializer(read_only= True, many=True)
-    servicio = ServicioSerializer(read_only= True, many=True)
-
-    class Meta:
-        model = Especialidad_servicio
-        fields = '__all__'
-
 class CategoriaConvenioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria_convenio
         fields = '__all__'
     
-
-class EspecialistaConvenioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Especialista_convenio
-        fields = '__all__'
-
-class EspecialistaEspecialidadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Especialista_especialidad
-        fields = '__all__'
 
 class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:

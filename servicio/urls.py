@@ -9,9 +9,6 @@ router.register(r'especialidad', views.EspecialidadViewSet)
 router.register(r'servicio', views.ServicioViewSet)
 router.register(r'consulta', views.ConsultaViewSet)
 router.register(r'categoriaConvenio', views.CategoriaConvenioViewSet)
-router.register(r'especialidadServicio', views.EspecialidadServicioViewSet)
-router.register(r'especialistaConvenio', views.EspecialistaConvenioViewSet)
-router.register(r'especialistaEspecialidad', views.EspecialistaEspecialidadViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
