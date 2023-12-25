@@ -12,8 +12,11 @@ class Especialista(models.Model):
     horarios = models.CharField(max_length=150)
     administrador = models.BooleanField(default=False)
     imagen = CloudinaryField('image')
-    convenio = models.ManyToManyField('Convenio', related_name='especialista_convenio')
-    especialidad = models.ManyToManyField('Especialidad', related_name='especialista_especialidad')
+    convenio = models.ManyToManyField('Convenio', related_name='especialista_convenio', blank=True)
+    especialidad = models.ManyToManyField('Especialidad', related_name='especialista_especialidad', blank=True)
+
+    def __str__(self):
+        return self.nombre
 
 
 class Convenio(models.Model):
@@ -22,7 +25,11 @@ class Convenio(models.Model):
     enlace = models.CharField(max_length=200)
     imagen = CloudinaryField('image', folder='convenios_img')
     num_telefono = models.CharField(max_length=25)
-    tipo_convenio_id = models.ForeignKey('Categoria_convenio', on_delete=models.CASCADE)
+    tipo_convenio_id = models.ForeignKey('Categoria_convenio', on_delete=models.CASCADE, null=True)
+
+
+    def __str__(self):
+        return self.nombre
 
 
 class Categoria_convenio(models.Model):
@@ -34,6 +41,8 @@ class Especialidad(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.CharField(max_length=1000)
     imagen = CloudinaryField('image')
+    servicios = models.ManyToManyField('Servicio', related_name='especialidades_servicios', blank=True)
+    
 
     def __str__(self):
         return self.nombre
@@ -42,7 +51,6 @@ class Servicio(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=1000)
     imagen = CloudinaryField('image')
-    especialidades = models.ManyToManyField(Especialidad,related_name='servicios')
 
     def __str__(self):
         return self.nombre
@@ -52,5 +60,8 @@ class Consulta(models.Model):
     correo_electronico = models.EmailField()
     num_telefono = models.CharField(max_length=25)
     motivo_consulta = models.CharField(max_length=500)
-    especialista_id = models.ForeignKey(Especialista, on_delete=models.CASCADE, null=True)
+    especialista_id = models.ForeignKey('Especialista', on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.nombre
 

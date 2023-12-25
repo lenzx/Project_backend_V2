@@ -93,7 +93,7 @@ class EspecialistaViewSet(viewsets.ModelViewSet):
         """
         Actualizar un especialista.
         """
-        especialista = Especialista.objects.get(pk=pk).prefetch_related('especialidades')
+        especialista = Especialista.objects.get(pk=pk)
         serializer = EspecialistaSerializer(especialista, data=request.data)
         if serializer.is_valid():
             serializer.save()
