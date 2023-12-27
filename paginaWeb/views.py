@@ -5,12 +5,23 @@ from .serializer import SeccionSerializer, MarkaySerializer, Red_socialSerialize
 from .models import Seccion, Markay, Red_social
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
 class MarkayViewSet(viewsets.ModelViewSet) :
     queryset = Markay.objects.all()
     serializer_class = MarkaySerializer
+    # authentication_classes = [JWTAuthentication]
+
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         permission_classes = [AllowAny]
+    #     else:
+    #         permission_classes = [IsAuthenticated]
+    #     return [permission() for permission in permission_classes]
 
     def list(self, request) :
         """
@@ -62,6 +73,14 @@ class MarkayViewSet(viewsets.ModelViewSet) :
 class SeccionViewSet(viewsets.ModelViewSet) :
     queryset = Seccion.objects.all()
     serializer_class = SeccionSerializer
+    # authentication_classes = [JWTAuthentication]
+
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         permission_classes = [AllowAny]
+    #     else:
+    #         permission_classes = [IsAuthenticated]
+    #     return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -116,6 +135,14 @@ class SeccionViewSet(viewsets.ModelViewSet) :
 class RedSocialViewSet(viewsets.ModelViewSet):
     queryset = Red_social.objects.all()
     serializer_class = Red_socialSerializer
+    # authentication_classes = [JWTAuthentication]
+
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         permission_classes = [AllowAny]
+    #     else:
+    #         permission_classes = [IsAuthenticated]
+    #     return [permission() for permission in permission_classes]
 
     def list(self, request):
         """

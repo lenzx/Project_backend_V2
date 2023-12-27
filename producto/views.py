@@ -1,16 +1,24 @@
 from django.shortcuts import render
-
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import viewsets
 from .serializer import ProductoSerializer, CategoriaSerializer
 from .models import Producto, Categoria
 from rest_framework.response import Response
 from rest_framework import status
-# Create your views here.
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+    authentication_classes = [JWTAuthentication]
+
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -58,11 +66,18 @@ class ProductoViewSet(viewsets.ModelViewSet):
         producto = Producto.objects.get(pk=pk)
         producto.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+    authentication_classes = [JWTAuthentication]
+
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -110,5 +125,3 @@ class CategoriaViewSet(viewsets.ModelViewSet):
         categoria = Categoria.objects.get(pk=pk)
         categoria.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
