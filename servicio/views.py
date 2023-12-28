@@ -14,14 +14,14 @@ from rest_framework.permissions import AllowAny
 class ConvenioViewSet(viewsets.ModelViewSet):
     queryset = Convenio.objects.all()
     serializer_class = ConvenioSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -73,14 +73,14 @@ class ConvenioViewSet(viewsets.ModelViewSet):
 class EspecialistaViewSet(viewsets.ModelViewSet):
     queryset = Especialista.objects.all()
     serializer_class = EspecialistaSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -132,14 +132,14 @@ class EspecialistaViewSet(viewsets.ModelViewSet):
 class EspecialidadViewSet(viewsets.ModelViewSet):
     queryset = Especialidad.objects.all()
     serializer_class = EspecialidadSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -193,14 +193,14 @@ class ServicioViewSet(viewsets.ModelViewSet):
 
     queryset = Servicio.objects.all()
     serializer_class = ServicioSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -252,14 +252,14 @@ class ServicioViewSet(viewsets.ModelViewSet):
 class ConsultaViewSet(viewsets.ModelViewSet):
     queryset = Consulta.objects.all()
     serializer_class = ConsultaSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list' or self.action == 'create':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request) :
         """
@@ -313,14 +313,14 @@ class ConsultaViewSet(viewsets.ModelViewSet):
 class CategoriaConvenioViewSet(viewsets.ModelViewSet):
     queryset = Categoria_convenio.objects.all()
     serializer_class = CategoriaConvenioSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """

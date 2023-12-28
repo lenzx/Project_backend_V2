@@ -16,14 +16,14 @@ from rest_framework.permissions import IsAuthenticated
 class MarkayViewSet(viewsets.ModelViewSet) :
     queryset = Markay.objects.all()
     serializer_class = MarkaySerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request) :
         """
@@ -75,14 +75,14 @@ class MarkayViewSet(viewsets.ModelViewSet) :
 class SeccionViewSet(viewsets.ModelViewSet) :
     queryset = Seccion.objects.all()
     serializer_class = SeccionSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """
@@ -137,14 +137,14 @@ class SeccionViewSet(viewsets.ModelViewSet) :
 class RedSocialViewSet(viewsets.ModelViewSet):
     queryset = Red_social.objects.all()
     serializer_class = Red_socialSerializer
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         permission_classes = [AllowAny]
-    #     else:
-    #         permission_classes = [IsAuthenticated]
-    #     return [permission() for permission in permission_classes]
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     def list(self, request):
         """

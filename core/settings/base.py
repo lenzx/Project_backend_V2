@@ -1,16 +1,17 @@
 from pathlib import Path
 from datetime import timedelta
-import pymysql
 from dotenv import load_dotenv
 load_dotenv()
+import pymysql
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+CORS_ALLOWED_ORIGINS = os.environ.get('ALLOWED_CORS', '').split(',')
+CORS_ALLOW_CREDENTIALS = os.environ.get('CREDENTIALS_CORS') == 'True'
+
 
 
 
@@ -55,7 +56,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = { 
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10), 
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), 
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1), 
     'ROTATE_REFRESH_TOKENS': True, 
     'BLACKLIST_AFTER_ROTATION': True,
@@ -142,7 +143,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 
 
