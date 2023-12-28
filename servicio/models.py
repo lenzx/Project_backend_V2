@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 
@@ -23,6 +24,7 @@ class Convenio(models.Model):
     nombre = models.CharField(max_length=200)
     descripcion = models.CharField(max_length=1000)
     enlace = models.CharField(max_length=200)
+    direccion = models.CharField(max_length=100, default="")
     imagen = CloudinaryField('image', folder='convenios_img')
     num_telefono = models.CharField(max_length=25)
     tipo_convenio_id = models.ForeignKey('Categoria_convenio', on_delete=models.CASCADE, null=True)
@@ -54,13 +56,13 @@ class Servicio(models.Model):
 
     def __str__(self):
         return self.nombre
-
 class Consulta(models.Model):
     nombre = models.CharField(max_length=200)
     correo_electronico = models.EmailField()
     num_telefono = models.CharField(max_length=25)
     motivo_consulta = models.CharField(max_length=500)
     especialista_id = models.ForeignKey('Especialista', on_delete=models.CASCADE, null=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.nombre

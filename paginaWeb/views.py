@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+
+
 from rest_framework import viewsets
 from .serializer import SeccionSerializer, MarkaySerializer, Red_socialSerializer
 from .models import Seccion, Markay, Red_social

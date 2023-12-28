@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
+
 # Create your views here.
 
 class ConvenioViewSet(viewsets.ModelViewSet):
@@ -306,6 +307,8 @@ class ConsultaViewSet(viewsets.ModelViewSet):
         consulta = Consulta.objects.get(pk=pk)
         consulta.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+        
 
 class CategoriaConvenioViewSet(viewsets.ModelViewSet):
     queryset = Categoria_convenio.objects.all()
@@ -365,4 +368,5 @@ class CategoriaConvenioViewSet(viewsets.ModelViewSet):
         categoria = Categoria_convenio.objects.get(pk=pk)
         categoria.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
