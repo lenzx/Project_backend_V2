@@ -48,6 +48,7 @@ class CategoriaConvenioSerializer(serializers.ModelSerializer):
     
 
 class ConsultaSerializer(serializers.ModelSerializer):
+    especialista_id = EspecialistaSerializer(read_only = True)
     class Meta:
         model = Consulta
         fields = '__all__'

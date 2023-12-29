@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from rest_framework import viewsets
 from .serializer import ConvenioSerializer, EspecialistaSerializer, EspecialidadSerializer, ServicioSerializer, ConsultaSerializer, CategoriaConvenioSerializer
 from .models import Convenio, Especialista, Especialidad, Servicio, Consulta, Categoria_convenio
@@ -17,7 +15,7 @@ class ConvenioViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.action == 'list':
+        if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
@@ -266,6 +264,7 @@ class ConsultaViewSet(viewsets.ModelViewSet):
         List all productos.
         """
         consultas = Consulta.objects.all()
+        consultas = consultas.order_by('-fecha_creacion')
         serializer = ConsultaSerializer(consultas, many=True)
         return Response(serializer.data)
 

@@ -15,7 +15,7 @@ class MarkayViewSet(viewsets.ModelViewSet) :
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.action == 'list':
+        if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
@@ -74,7 +74,7 @@ class SeccionViewSet(viewsets.ModelViewSet) :
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.action == 'list':
+        if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
@@ -136,7 +136,7 @@ class RedSocialViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.action == 'list':
+        if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
