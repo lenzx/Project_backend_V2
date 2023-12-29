@@ -48,6 +48,12 @@ class CategoriaConvenioSerializer(serializers.ModelSerializer):
     
 
 class ConsultaSerializer(serializers.ModelSerializer):
+    especialista_id = serializers.PrimaryKeyRelatedField(queryset=Especialista.objects.all())
+    class Meta:
+        model = Consulta
+        fields = '__all__'
+    
+class CustomConsultaSerializer(serializers.ModelSerializer):
     especialista_id = EspecialistaSerializer(read_only = True)
     class Meta:
         model = Consulta

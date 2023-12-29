@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .serializer import ConvenioSerializer, EspecialistaSerializer, EspecialidadSerializer, ServicioSerializer, ConsultaSerializer, CategoriaConvenioSerializer
+from .serializer import ConvenioSerializer, EspecialistaSerializer, EspecialidadSerializer, ServicioSerializer, ConsultaSerializer, CategoriaConvenioSerializer, CustomConsultaSerializer   
 from .models import Convenio, Especialista, Especialidad, Servicio, Consulta, Categoria_convenio
 from rest_framework.response import Response
 from rest_framework import status
@@ -26,7 +26,7 @@ class ConvenioViewSet(viewsets.ModelViewSet):
         List all convenios.
         """
         convenios = Convenio.objects.all()
-        serializer = ConvenioSerializer(convenios, many=True)
+        serializer = ConsultaSerializer(convenios, many=True)
         return Response(serializer.data)
 
     def create(self, request):
@@ -45,7 +45,7 @@ class ConvenioViewSet(viewsets.ModelViewSet):
         Retrieve a convenio.
         """
         convenio = Convenio.objects.get(pk=pk)
-        serializer = ConvenioSerializer(convenio)
+        serializer = ConsultaSerializer(convenio)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
@@ -265,7 +265,7 @@ class ConsultaViewSet(viewsets.ModelViewSet):
         """
         consultas = Consulta.objects.all()
         consultas = consultas.order_by('-fecha_creacion')
-        serializer = ConsultaSerializer(consultas, many=True)
+        serializer = CustomConsultaSerializer(consultas, many=True)
         return Response(serializer.data)
 
     def create(self, request):
