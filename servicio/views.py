@@ -26,7 +26,7 @@ class ConvenioViewSet(viewsets.ModelViewSet):
         List all convenios.
         """
         convenios = Convenio.objects.all()
-        serializer = ConsultaSerializer(convenios, many=True)
+        serializer = ConvenioSerializer(convenios, many=True)
         return Response(serializer.data)
 
     def create(self, request):
@@ -45,7 +45,7 @@ class ConvenioViewSet(viewsets.ModelViewSet):
         Retrieve a convenio.
         """
         convenio = Convenio.objects.get(pk=pk)
-        serializer = ConsultaSerializer(convenio)
+        serializer = ConvenioSerializer(convenio)
         return Response(serializer.data)
 
     def update(self, request, pk=None):

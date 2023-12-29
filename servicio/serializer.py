@@ -17,24 +17,11 @@ class EspecialistaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ConvenioSerializer(serializers.ModelSerializer):
-    especialista_convenio = EspecialistaSerializer(read_only = True, many=True)
+    especialista_convenio = EspecialidadSerializer(read_only = True, many=True)
     class Meta:
         model = Convenio
         fields = '__all__'
     
-    # def update(self, instance, validated_data):
-    #     especialistas_data = validated_data.pop('especialista_convenio', [])
-    #     instance.nombre = validated_data.get('nombre', instance.nombre)
-    #     instance.save()
-
-    #     for especialista_data in especialistas_data:
-    #         especialista_id = especialista_data.get('id')
-    #         if especialista_id:
-    #             Especialista.objects.filter(id=especialista_id).update(**especialista_data)
-    #         else:
-    #             Especialista.objects.create(convenio=instance, **especialista_data)
-
-    #     return instance
 
 class ServicioSerializer(serializers.ModelSerializer):
     class Meta:
